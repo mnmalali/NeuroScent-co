@@ -57,48 +57,7 @@ export const Products: React.FC = () => {
           <SplineShowcase />
         </div>
 
-        {/* Secondary Products */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-           <div className="group">
-            <div className="bg-gray-100 aspect-square mb-6 overflow-hidden">
-               <img 
-                 src="https://images.unsplash.com/photo-1617066804618-2e2324dc0539?q=80&w=2574&auto=format&fit=crop" 
-                 alt="Discovery Set"
-                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-               />
-            </div>
-            <h4 className="font-serif text-xl mb-2">Discovery Set</h4>
-            <p className="text-sm text-gray-500 mb-4 font-light">Experience the raw accords before your analysis.</p>
-            <span className="block text-neuro-gold mb-4">$45.00</span>
-            <Button variant="outline" className="w-full">View Details</Button>
-           </div>
-
-           <div className="group">
-            <div className="bg-gray-100 aspect-square mb-6 overflow-hidden">
-               <img 
-                 src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=2574&auto=format&fit=crop" 
-                 alt="Refill"
-                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-               />
-            </div>
-            <h4 className="font-serif text-xl mb-2">Formula Refill</h4>
-            <p className="text-sm text-gray-500 mb-4 font-light">Reorder your unique Formula ID.</p>
-            <span className="block text-neuro-gold mb-4">$140.00</span>
-            <Button variant="outline" className="w-full">Reorder</Button>
-           </div>
-
-           <div className="group">
-            <div className="bg-gray-100 aspect-square mb-6 overflow-hidden flex items-center justify-center bg-neuro-black text-white p-8">
-               <div className="text-center">
-                 <h4 className="font-serif text-2xl mb-4">Future Vision</h4>
-                 <p className="font-light text-sm text-gray-400">Skin pH Integration & <br/>Celebrity Archetypes</p>
-               </div>
-            </div>
-            <h4 className="font-serif text-xl mb-2">Experimental Series</h4>
-            <p className="text-sm text-gray-500 mb-4 font-light">Join the waitlist for beta features.</p>
-            <Button variant="outline" className="w-full" to="/future">Learn More</Button>
-           </div>
-        </div>
+          {/* Secondary products removed per request */}
       </Section>
     </>
   );
