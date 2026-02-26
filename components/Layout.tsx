@@ -85,9 +85,8 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     <div className="min-h-screen flex flex-col font-sans text-neuro-black">
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-          isScrolled ? 'bg-neuro-ivory/90 backdrop-blur-md py-4 border-neuro-gold/20 shadow-sm' : 'bg-transparent py-6 border-transparent'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${isScrolled ? 'bg-neuro-ivory/90 backdrop-blur-md py-4 border-neuro-gold/20 shadow-sm' : 'bg-transparent py-6 border-transparent'
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
           <Link to="/" className="z-50">
@@ -144,7 +143,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           <AuthModal open={authOpen} mode={authMode} onClose={() => setAuthOpen(false)} />
 
           {/* Mobile Menu Button */}
-          <button 
+          <button
             className="md:hidden z-50 p-2"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
@@ -168,6 +167,55 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
             <Link to="/faq" className="text-xs uppercase tracking-widest border-b border-neuro-black pb-1">
               FAQ
             </Link>
+
+            <div className="flex flex-col items-center space-y-6 pt-8 w-1/2">
+              {user ? (
+                <>
+                  <span className="text-xs tracking-[0.2em] text-neuro-black/60 uppercase text-center w-full truncate px-4">{user.email ?? 'Account'}</span>
+                  {isAdmin && (
+                    <Link
+                      to="/admin"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="text-xs uppercase tracking-widest border-b border-neuro-black pb-1"
+                    >
+                      Admin
+                    </Link>
+                  )}
+                  <button
+                    onClick={async () => {
+                      await supabase.auth.signOut();
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-xs uppercase tracking-widest border-b border-neuro-black pb-1"
+                  >
+                    Sign out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={() => {
+                      setAuthMode('sign-in');
+                      setAuthOpen(true);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-xs uppercase tracking-widest border-b border-neuro-black pb-1"
+                  >
+                    Sign in
+                  </button>
+                  <button
+                    onClick={() => {
+                      setAuthMode('sign-up');
+                      setAuthOpen(true);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="text-xs uppercase tracking-widest border-b border-neuro-black pb-1"
+                  >
+                    Sign up
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </header>
@@ -183,11 +231,11 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           <div className="space-y-6">
             <h2 className="font-serif text-2xl tracking-wider">NEUROSCENT</h2>
             <p className="text-sm text-gray-400 font-light max-w-xs leading-relaxed">
-              The intersection of artificial intelligence and high perfumery. 
+              The intersection of artificial intelligence and high perfumery.
               Personalized scent, synthesized in real-time.
             </p>
           </div>
-          
+
           <div className="space-y-4">
             <h3 className="text-xs uppercase tracking-[0.2em] text-neuro-gold mb-6">Discover</h3>
             <ul className="space-y-3 text-sm font-light text-gray-300">
