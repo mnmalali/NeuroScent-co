@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { NavItem } from '../types';
 import { Menu, X } from 'lucide-react';
+import supabase from '../lib/supabaseClient';
+import AuthModal from './AuthModal';
 
 const NAV_ITEMS: NavItem[] = [
   { label: 'Products', path: '/products' },
@@ -14,7 +16,11 @@ const NAV_ITEMS: NavItem[] = [
 export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [user, setUser] = useState<any>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
   const location = useLocation();
+  const [authOpen, setAuthOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<'sign-in' | 'sign-up'>('sign-in');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +28,52 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Auth: load current user and listen for changes
+  useEffect(() => {
+    let mounted = true;
+    const init = async () => {
+      try {
+        const { data } = await supabase.auth.getUser();
+        if (!mounted) return;
+        setUser(data?.user ?? null);
+        if (data?.user) {
+          const { data: adminData } = await supabase.from('admins').select('user_id').eq('user_id', data.user.id).maybeSingle();
+          setIsAdmin(Boolean(adminData?.user_id));
+        } else {
+          setIsAdmin(false);
+        }
+      } catch (e) {
+        console.warn('Auth init error', e);
+      }
+    };
+    init();
+
+    const res: any = supabase.auth.onAuthStateChange((_event, session) => {
+      const u = session?.user ?? null;
+      setUser(u);
+      if (u) {
+        supabase.from('admins').select('user_id').eq('user_id', u.id).maybeSingle().then(({ data }) => setIsAdmin(Boolean(data?.user_id)));
+      } else {
+        setIsAdmin(false);
+      }
+    });
+
+    // supabase.auth.onAuthStateChange can return different shapes depending on client version.
+    // Try to find the subscription object safely and unsubscribe on cleanup.
+    const subscription = res?.data?.subscription ?? res?.subscription ?? null;
+
+    return () => {
+      mounted = false;
+      try {
+        subscription?.unsubscribe?.();
+      } catch (e) {
+        // swallow any errors during cleanup
+        // (some older/newer SDK versions expose different APIs)
+        // no-op
+      }
+    };
   }, []);
 
   useEffect(() => {
@@ -43,7 +95,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex space-x-8">
+          <nav className="hidden md:flex items-center space-x-8">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.path}
@@ -53,7 +105,43 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 {item.label}
               </Link>
             ))}
+
+            {/* Auth area to the right of nav */}
+            <div className="flex items-center space-x-4 ml-6">
+              {user ? (
+                <>
+                  <span className="text-xs">{user.email ?? 'Account'}</span>
+                  {isAdmin && (
+                    <Link to="/admin" className="text-xs uppercase tracking-[0.2em] hover:text-neuro-gold">
+                      Admin
+                    </Link>
+                  )}
+                  <button
+                    onClick={async () => { await supabase.auth.signOut(); }}
+                    className="text-xs uppercase tracking-[0.2em] hover:text-neuro-gold"
+                  >
+                    Sign out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={() => { setAuthMode('sign-in'); setAuthOpen(true); }}
+                    className="text-xs uppercase tracking-[0.2em] hover:text-neuro-gold"
+                  >
+                    Sign in
+                  </button>
+                  <button
+                    onClick={() => { setAuthMode('sign-up'); setAuthOpen(true); }}
+                    className="text-xs uppercase tracking-[0.2em] hover:text-neuro-gold"
+                  >
+                    Sign up
+                  </button>
+                </>
+              )}
+            </div>
           </nav>
+          <AuthModal open={authOpen} mode={authMode} onClose={() => setAuthOpen(false)} />
 
           {/* Mobile Menu Button */}
           <button 

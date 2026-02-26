@@ -131,3 +131,5 @@ export const ScentProfiles: React.FC = () => {
     </>
   );
 };
+
+export default ScentProfiles;

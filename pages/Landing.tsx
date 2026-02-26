@@ -109,7 +109,7 @@ export const Landing: React.FC = () => {
           <p className="text-gray-400 font-light text-lg mb-8">
             Allow our AI to deconstruct your preferences and assemble your signature fragrance.
           </p>
-          <Button to="/products" className="bg-neuro-ivory text-neuro-black hover:bg-neuro-gold hover:text-white">
+          <Button to="/products" variant="secondary" className="font-semibold px-10">
             Create Your Perfume
           </Button>
         </div>
