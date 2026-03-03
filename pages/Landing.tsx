@@ -86,7 +86,7 @@ export const Landing: React.FC = () => {
 
           <div className="order-1 md:order-2 relative h-[500px] md:h-auto">
             <img
-              src="images/brandambasidors/Adobe Express - file.png"
+              src="/images/brandambasidors/adobe-express-file.png"
               alt="Model with clean skin"
               className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
             />
@@ -108,17 +108,17 @@ export const Landing: React.FC = () => {
             {
               title: "Fresh Lift",
               desc: "Awakening, crisp, and intellectual.",
-              img: "images/accords/Fresh Lift.jpg",
+              img: "/images/accords/fresh-lift.jpg",
             },
             {
               title: "Soft Floral Air",
               desc: "Ethereal, calming, and weightless.",
-              img: "images/accords/Soft Floral Air.jpg",
+              img: "/images/accords/soft-floral-air.jpg",
             },
             {
               title: "Clean Skin Musk",
               desc: "Intimate, sensual, and grounding.",
-              img: "images/accords/Clean Skin Musk.jpg",
+              img: "/images/accords/clean-skin-musk.jpg",
             },
           ].map((item, idx) => (
             <div key={idx} className="group cursor-pointer">

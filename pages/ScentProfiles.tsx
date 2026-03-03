@@ -81,7 +81,7 @@ const ACCORDS: Accord[] = [
       base: ["Light woody smoothness"],
     },
     color: "bg-blue-50",
-    image: "/images/accords/Fresh Lift.jpg",
+    image: "/images/accords/fresh-lift.jpg",
   },
   {
     id: "02",
@@ -99,7 +99,7 @@ const ACCORDS: Accord[] = [
       base: ["Clean skin floral finish", "Soft musky floral warmth"],
     },
     color: "bg-pink-50",
-    image: "/images/accords/Soft Floral Air.jpg",
+    image: "/images/accords/soft-floral-air.jpg",
   },
   {
     id: "03",
@@ -113,7 +113,7 @@ const ACCORDS: Accord[] = [
       base: ["Warm subtle woody note", "Comforting musky drydown"],
     },
     color: "bg-stone-100",
-    image: "/images/accords/Clean Skin Musk.jpg",
+    image: "/images/accords/clean-skin-musk.jpg",
   },
   {
     id: "04",
@@ -131,7 +131,7 @@ const ACCORDS: Accord[] = [
       ],
     },
     color: "bg-stone-200",
-    image: "/images/accords/Woody Skin.jpg",
+    image: "/images/accords/woody-skin.jpg",
   },
   {
     id: "05",
@@ -145,7 +145,7 @@ const ACCORDS: Accord[] = [
       base: ["Deep amber note", "Soft sweetness", "Sensual warm drydown"],
     },
     color: "bg-orange-50",
-    image: "/images/accords/Warm Amber Depth.jpg",
+    image: "/images/accords/warm-amber-depth.jpg",
   },
   {
     id: "06",
@@ -159,7 +159,7 @@ const ACCORDS: Accord[] = [
       base: ["Cozy warm sweetness", "Long-lasting comforting trail"],
     },
     color: "bg-yellow-50",
-    image: "/images/accords/Soft Sweet Comfort.avif",
+    image: "/images/accords/soft-sweet-comfort.avif",
   },
   {
     id: "07",
@@ -173,7 +173,7 @@ const ACCORDS: Accord[] = [
       base: ["Soft woody spice trail"],
     },
     color: "bg-red-50",
-    image: "/images/accords/Sparkle Spice Accent.jpg",
+    image: "/images/accords/sparkle-spice-accent.jpg",
   },
   {
     id: "08",
@@ -187,7 +187,7 @@ const ACCORDS: Accord[] = [
       base: ["Soft earthy grounding", "Clean woody-musky drydown"],
     },
     color: "bg-emerald-50",
-    image: "/images/accords/Green Balance.jpg",
+    image: "/images/accords/green-balance.jpg",
   },
 ];
 
