@@ -1,6 +1,7 @@
 import React from "react";
 import { Section, SectionTitle } from "../components/Section";
 import { Button } from "../components/Button";
+import { ScrollReveal } from "../components/ScrollReveal";
 
 export const Landing: React.FC = () => {
   return (
@@ -9,7 +10,7 @@ export const Landing: React.FC = () => {
       <div className="relative h-screen min-h-[600px] flex items-center bg-neuro-ivory overflow-hidden">
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1602928321679-560bb453f190?q=80&w=1234&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop')] bg-cover bg-center" />
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20">
-          <div className="max-w-4xl animate-fade-in">
+          <ScrollReveal className="max-w-4xl">
             <span className="block text-neuro-gold text-xs uppercase tracking-[0.3em] mb-6">
               The Future of Fragrance
             </span>
@@ -29,20 +30,20 @@ export const Landing: React.FC = () => {
                 How It Works
               </Button>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </div>
 
       {/* Concept Snapshot */}
       <Section className="bg-white">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
+          <ScrollReveal>
             <img
               src="https://images.unsplash.com/photo-1602928309809-776bf9db8658?q=80&w=698&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D=crop"
               alt="Lab glassware"
               className="w-full h-[600px] object-cover grayscale opacity-90 hover:opacity-100 transition-opacity duration-700"
             />
-          </div>
+          </ScrollReveal>
           <div className="space-y-8">
             <SectionTitle
               eyebrow="The Philosophy"
@@ -84,13 +85,13 @@ export const Landing: React.FC = () => {
             </div>
           </div>
 
-          <div className="order-1 md:order-2 relative h-[500px] md:h-auto">
+          <ScrollReveal className="order-1 md:order-2 relative h-[500px] md:h-auto">
             <img
               src="/images/brandambasidors/adobe-express-file.png"
               alt="Model with clean skin"
               className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
             />
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -121,17 +122,19 @@ export const Landing: React.FC = () => {
               img: "/images/accords/clean-skin-musk.jpg",
             },
           ].map((item, idx) => (
-            <div key={idx} className="group cursor-pointer">
-              <div className="overflow-hidden mb-6 aspect-[3/4]">
-                <img
-                  src={item.img}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <h3 className="font-serif text-2xl mb-2">{item.title}</h3>
-              <p className="text-sm font-light text-gray-500">{item.desc}</p>
-            </div>
+            <React.Fragment key={idx}>
+              <ScrollReveal delay={idx * 0.2} className="group cursor-pointer">
+                <div className="overflow-hidden mb-6 aspect-[3/4]">
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
+                <h3 className="font-serif text-2xl mb-2">{item.title}</h3>
+                <p className="text-sm font-light text-gray-500">{item.desc}</p>
+              </ScrollReveal>
+            </React.Fragment>
           ))}
         </div>
         <div className="text-center mt-16">

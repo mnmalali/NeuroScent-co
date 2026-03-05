@@ -1,6 +1,8 @@
 import React from 'react';
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'framer-motion';
 import { Layout } from './components/Layout';
+import PageWrapper from './components/PageWrapper';
 import { Landing } from './pages/Landing';
 import { Products } from './pages/Products';
 import { ScentProfiles } from './pages/ScentProfiles';
@@ -12,22 +14,31 @@ import { Future } from './pages/Future';
 import { FAQ } from './pages/FAQ';
 import { Admin } from './pages/Admin';
 
+const AppRoutes: React.FC = () => {
+  const location = useLocation();
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<PageWrapper><Landing /></PageWrapper>} />
+        <Route path="/products" element={<PageWrapper><Products /></PageWrapper>} />
+        <Route path="/scent-profiles" element={<PageWrapper><ScentProfiles /></PageWrapper>} />
+        <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
+        <Route path="/how-it-works" element={<PageWrapper><HowItWorks /></PageWrapper>} />
+        <Route path="/science" element={<PageWrapper><Science /></PageWrapper>} />
+        <Route path="/machine" element={<PageWrapper><Machine /></PageWrapper>} />
+        <Route path="/future" element={<PageWrapper><Future /></PageWrapper>} />
+        <Route path="/faq" element={<PageWrapper><FAQ /></PageWrapper>} />
+        <Route path="/admin" element={<PageWrapper><Admin /></PageWrapper>} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
 export const App: React.FC = () => {
   return (
     <HashRouter>
       <Layout>
-        <Routes>
-          <Route path="/" element={<Landing />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/scent-profiles" element={<ScentProfiles />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/how-it-works" element={<HowItWorks />} />
-          <Route path="/science" element={<Science />} />
-          <Route path="/machine" element={<Machine />} />
-          <Route path="/future" element={<Future />} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
+        <AppRoutes />
       </Layout>
     </HashRouter>
   );

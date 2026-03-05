@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { ScrollReveal } from "./ScrollReveal";
 
 interface SectionProps {
   children: React.ReactNode;
@@ -7,27 +8,32 @@ interface SectionProps {
   fullWidth?: boolean;
 }
 
-export const Section: React.FC<SectionProps> = ({ children, className = '', id, fullWidth = false }) => {
+export const Section: React.FC<SectionProps> = ({
+  children,
+  className = "",
+  id,
+  fullWidth = false,
+}) => {
   return (
     <section id={id} className={`py-20 md:py-32 ${className}`}>
       {fullWidth ? (
         children
       ) : (
-        <div className="max-w-7xl mx-auto px-6">
-          {children}
-        </div>
+        <div className="max-w-7xl mx-auto px-6">{children}</div>
       )}
     </section>
   );
 };
 
-export const SectionTitle: React.FC<{ 
-  eyebrow?: string; 
-  title: string; 
+export const SectionTitle: React.FC<{
+  eyebrow?: string;
+  title: string;
   description?: string;
   center?: boolean;
 }> = ({ eyebrow, title, description, center = false }) => (
-  <div className={`mb-16 max-w-3xl ${center ? 'mx-auto text-center' : ''} animate-fade-in`}>
+  <ScrollReveal
+    className={`mb-16 max-w-3xl ${center ? "mx-auto text-center" : ""}`}
+  >
     {eyebrow && (
       <span className="block text-neuro-gold text-xs uppercase tracking-[0.2em] mb-4">
         {eyebrow}
@@ -41,5 +47,5 @@ export const SectionTitle: React.FC<{
         {description}
       </p>
     )}
-  </div>
+  </ScrollReveal>
 );

@@ -265,7 +265,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
       <main className="flex-grow pt-20">{children}</main>
 
       {/* Footer */}
-      <footer className="bg-neuro-black text-neuro-ivory pt-20 mt-20 relative group">
+      <footer className="bg-neuro-black text-neuro-ivory pt-20 mt-20 relative">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 pb-12 relative z-10">
           <div className="space-y-6">
             <h2 className="font-serif text-2xl tracking-wider">NEUROSCENT</h2>
@@ -368,7 +368,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({
           <img
             src="/images/hand%20of%20adam.png"
             alt="Hand of Adam"
-            className="w-full h-auto object-cover opacity-80 transition-all duration-700 ease-in-out group-hover:opacity-100 group-hover:scale-105 cursor-pointer"
+            className="w-full h-auto object-cover grayscale hover:grayscale-0 transition-all duration-700"
           />
         </div>
       </footer>
